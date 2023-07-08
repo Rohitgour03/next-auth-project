@@ -6,7 +6,7 @@ import { ActivitiesCard } from './components/ActivitiesCard'
 import TopProductCard from './components/TopProductCard'
 import ScheduleCard from './components/ScheduleCard'
 
-const dashboard = () => {
+const Dashboard = () => {
 
   const { data: session } = useSession({required: true})
   
@@ -137,4 +137,4 @@ export async function getServerSideProps(context){
   }
 }
 
-export default dashboard
+export default Dashboard
