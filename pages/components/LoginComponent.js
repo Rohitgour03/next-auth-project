@@ -1,17 +1,24 @@
-import {useSession, signIn, signOut, getSession} from 'next-auth/react'
+import { signIn } from 'next-auth/react'
 
-const LoginComponent = ({credentials, setCredentials, submitHandler, googleSigninHandler}) => {
+const LoginComponent = ({credentials, setCredentials, submitHandler}) => {
 
-  console.log(process.env.NEXTAUTH_URL + '/dashboard')
+  
   const formHandler = async (e) => {
     e.preventDefault()
-
+    
     if(e.target.id === "email"){
       setCredentials({...credentials, email: e.target.value})
     } else if (e.target.id === "password"){
       console.log('Typing in password', credentials.password)
       setCredentials({...credentials, password: e.target.value})
     }
+  }
+  
+  const googleSigninHandler = () => {
+    console.log(process.env.NEXTAUTH_URL + '/dashboard')
+    console.log("Google sign button got clicked!")
+    signIn('google', { callbackUrl: `${process.env.NEXTAUTH_URL}/dashboard` })
+    console.log(signIn('google', { callbackUrl: `${process.env.NEXTAUTH_URL}/dashboard` }))
   }
 
   return (
@@ -21,7 +28,7 @@ const LoginComponent = ({credentials, setCredentials, submitHandler, googleSigni
 
       <div className='flex items-center justify-between my-[26px]'>
         <div 
-          onClick={ () => signIn('google', { callbackUrl: `${process.env.NEXTAUTH_URL}/dashboard` })}
+          onClick={ () => googleSigninHandler()}
           className='py-[8px] flex justify-center items-center rounded-[10px] gap-[0.66rem] w-[180px] bg-white cursor-pointer'>
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
             <g clipPath="url(#clip0_0_347)">

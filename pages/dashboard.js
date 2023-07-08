@@ -95,14 +95,12 @@ const Dashboard = () => {
                   </svg>
                 </div>
                 <div className='w-[1.875rem] h-[1.875rem] bg-[#C4C4C4] rounded-[100px]'>
-                  { userImg &&
-                    <Image 
+                  <Image 
                     src={avatar} 
                     width={100}
                     height={100}
                     alt="user avatar"
                     className='w-[100%] rounded-[100px]' />
-                  }
                 </div>
               </div>
             </div>
