@@ -5,6 +5,7 @@ import { SearchBar } from './components/SearchBar'
 import { ActivitiesCard } from './components/ActivitiesCard'
 import TopProductCard from './components/TopProductCard'
 import ScheduleCard from './components/ScheduleCard'
+import Link from 'next/link'
 
 const Dashboard = () => {
 
@@ -46,9 +47,10 @@ const Dashboard = () => {
   //   return <DataCard key={index} color={data.color} title={data.title} quantity={data.quantity} svgSrc={data.svgSrc} />
   // })
 
+
   if(!session){
     return (
-      <div>Sorry! You are not <a href="/login">Signed in</a>.</div>
+      <div>Sorry! You are not <Link to="/login">Signed in</Link>.</div>
     )
   } else{
     return (
