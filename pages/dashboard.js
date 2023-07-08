@@ -34,7 +34,7 @@ const Dashboard = () => {
     userImg = session.user.image
   }
 
-  const avatar = "/image 1.png"
+  const avatar = session ? userImg : "/image 1.png"
 
   // const dashboardData = [
   //   {
