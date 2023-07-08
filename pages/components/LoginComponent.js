@@ -2,6 +2,7 @@ import {useSession, signIn, signOut, getSession} from 'next-auth/react'
 
 const LoginComponent = ({credentials, setCredentials, submitHandler, googleSigninHandler}) => {
 
+  console.log(process.env.NEXTAUTH_URL + '/dashboard')
   const formHandler = async (e) => {
     e.preventDefault()
 
@@ -20,7 +21,7 @@ const LoginComponent = ({credentials, setCredentials, submitHandler, googleSigni
 
       <div className='flex items-center justify-between my-[26px]'>
         <div 
-          onClick={ () => signIn('google', { callbackUrl: 'http://localhost:3000/dashboard' })}
+          onClick={ () => signIn('google', { callbackUrl: `${process.env.NEXTAUTH_URL}/dashboard` })}
           className='py-[8px] flex justify-center items-center rounded-[10px] gap-[0.66rem] w-[180px] bg-white cursor-pointer'>
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
             <g clipPath="url(#clip0_0_347)">
