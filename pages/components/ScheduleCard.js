@@ -4,7 +4,7 @@ const ScheduleCard = () => {
   return (
     <div>
       <div className='flex justify-between items-center'>
-        <h3 className='text-[1.125rem] font-bold text-black'>Today's schedule</h3>
+        <h3 className='text-[1.125rem] font-bold text-black'>Today&apos;s schedule</h3>
         <div className='text-[0.75rem] text-[#858585] flex items-center gap-[0.37rem] '>
           <span>See All</span>
           <svg xmlns="http://www.w3.org/2000/svg" width="5" height="8" viewBox="0 0 5 8" fill="none">

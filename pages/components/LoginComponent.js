@@ -5,11 +5,10 @@ const LoginComponent = ({credentials, setCredentials, submitHandler, googleSigni
   const formHandler = async (e) => {
     e.preventDefault()
 
-    if(e.target.id == 'email'){
+    if(e.target.id === "email"){
       console.log('Typing in email', credentials.email)
       setCredentials({...credentials, email: e.target.value})
-    }  
-    if(e.target.id == 'password'){
+    } else if (e.target.id === "password"){
       console.log('Typing in password', credentials.password)
       setCredentials({...credentials, password: e.target.value})
     }
@@ -91,7 +90,7 @@ const LoginComponent = ({credentials, setCredentials, submitHandler, googleSigni
       </div>
 
       <p className='mt-[1.25rem] text-[#858585] text-center'>
-        Don't have an account? 
+        Don&apos;t have an account? 
         <a href="" className='text-[#346BD4]'> Register here</a>
       </p>
     </div>
