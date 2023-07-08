@@ -14,11 +14,10 @@ const LoginComponent = ({credentials, setCredentials, submitHandler}) => {
     }
   }
   
-  const googleSigninHandler = () => {
-    console.log(process.env.NEXTAUTH_URL + '/dashboard')
+  const googleSigninHandler = async () => {
     console.log("Google sign button got clicked!")
-    signIn('google', { callbackUrl: `${process.env.NEXTAUTH_URL}/dashboard` })
-    console.log(signIn('google', { callbackUrl: `${process.env.NEXTAUTH_URL}/dashboard` }))
+    const res = await signIn('google', { callbackUrl: 'https://next-auth-project-seven.vercel.app/dashboard'})
+    console.log(res)
   }
 
   return (

@@ -31,10 +31,15 @@ const Dashboard = () => {
   
   let userImg;
   if(session){
-    userImg = session.user.image
+    if(session.user.image){
+      userImg = session.user.image.toString()
+    } else{
+      userImg = "/image 1.png"
+    }
   }
 
-  const avatar = session ? userImg : "/image 1.png"
+  const avatar = userImg
+  const avatarElement = <img src={avatar} width={100} height={100} alt="user avatar" className='w-[100%] rounded-[100px]' />
 
   // const dashboardData = [
   //   {
@@ -95,12 +100,7 @@ const Dashboard = () => {
                   </svg>
                 </div>
                 <div className='w-[1.875rem] h-[1.875rem] bg-[#C4C4C4] rounded-[100px]'>
-                  <Image 
-                    src={avatar} 
-                    width={100}
-                    height={100}
-                    alt="user avatar"
-                    className='w-[100%] rounded-[100px]' />
+                  {avatarElement}
                 </div>
               </div>
             </div>
@@ -112,7 +112,7 @@ const Dashboard = () => {
                   width={26.4}
                   height={24}
                   alt="Total revenue svg"
-                  className='h-[1.5rem] w-fit self-end'
+                  className='self-end'
                 />
                 <span className='text-black block text-[0.875rem] mb-[0.3rem]'>Total Revenues</span>
                 <span className='text-black block text-[1.5rem] font-bold '>$2,129,430</span>
@@ -124,7 +124,7 @@ const Dashboard = () => {
                     width={20.79}
                     height={24}
                     alt="Total revenue svg"
-                    className='h-[1.5rem] w-fit self-end'
+                    className='self-end'
                   />
                 <span className='text-black block text-[0.875rem] mb-[0.3rem]'>Total Transactions</span>
                 <span className='text-black block text-[1.5rem] font-bold '>1,520</span>
@@ -136,7 +136,7 @@ const Dashboard = () => {
                     width={23.3}
                     height={24}
                     alt="Total likes svg"
-                    className='h-[1.5rem] w-fit self-end'
+                    className='self-end'
                   />
                 <span className='text-black block text-[0.875rem] mb-[0.3rem]'>Total Likes</span>
                 <span className='text-black block text-[1.5rem] font-bold '>9,721</span>
@@ -148,7 +148,7 @@ const Dashboard = () => {
                     width={36.82}
                     height={24}
                     alt="Total user svg"
-                    className='h-[1.5rem] w-fit self-end'
+                    className='self-end'
                   />  
                 <span className='text-black block text-[0.875rem] mb-[0.3rem]'>Total Users</span>
                 <span className='text-black block text-[1.5rem] font-bold'>829</span>
