@@ -62,7 +62,7 @@ const LoginComponent = ({credentials, setCredentials, submitHandler, googleSigni
             <input 
               id='email' type="text" 
               onChange={(e) => {formHandler(e)}}
-              value={credentials.email}
+              value={ credentials && credentials.email }
               placeholder='Enter email address'
               className='py-[10px] px-4 rounded-[10px] w-full bg-[#F5F5F5]' />
           </div>
