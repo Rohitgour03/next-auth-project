@@ -1,7 +1,7 @@
 import { signIn, getSession } from 'next-auth/react'
-import LoginComponent from './components/LoginComponent'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
+import LoginComponent from './components/LoginComponent'
 
 export async function getServerSideProps(context){
   const session = await getSession(context)
@@ -17,7 +17,7 @@ export async function getServerSideProps(context){
   }
 }
 
-const login = () => {
+const Login = () => {
   const router = useRouter()
   const [credentials, setCredentials] = useState({email: "", password: ""})
 
@@ -55,4 +55,4 @@ const login = () => {
   )
 }
 
-export default login
+export default Login

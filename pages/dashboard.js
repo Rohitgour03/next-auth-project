@@ -1,13 +1,31 @@
 import React from 'react'
-import {useSession, getSession} from 'next-auth/react'
+import { useSession, getSession } from 'next-auth/react'
+
 import Sidebar from './components/Sidebar'
-import { SearchBar } from './components/SearchBar'
-import { DataCard } from './components/DataCard'
-import { ActivitiesCard } from './components/ActivitiesCard'
+import SearchBar from './components/SearchBar'
+import ActivitiesCard from './components/ActivitiesCard'
 import TopProductCard from './components/TopProductCard'
 import ScheduleCard from './components/ScheduleCard'
 
-const dashboard = () => {
+import Link from 'next/link'
+import Image from 'next/image'
+
+export async function getServerSideProps(context){
+  const session = await getSession(context)
+
+  if(!session){
+    return{
+      redirect: {
+        destination: '/login'
+      },
+    }
+  }
+  return {
+    props: { session }
+  }
+}
+
+const Dashboard = () => {
 
   const { data: session } = useSession({required: true})
   
@@ -15,6 +33,8 @@ const dashboard = () => {
   if(session){
     userImg = session.user.image
   }
+
+  const avatar = "/image 1.png"
 
   // const dashboardData = [
   //   {
@@ -47,9 +67,13 @@ const dashboard = () => {
   //   return <DataCard key={index} color={data.color} title={data.title} quantity={data.quantity} svgSrc={data.svgSrc} />
   // })
 
+
   if(!session){
     return (
-      <div>Sorry! You are not <a href="/login">Signed in</a>.</div>
+      <div>
+        <span>Sorry, You are not</span> 
+        <Link href="/login">Signed in</Link>
+      </div>
     )
   } else{
     return (
@@ -71,32 +95,63 @@ const dashboard = () => {
                   </svg>
                 </div>
                 <div className='w-[1.875rem] h-[1.875rem] bg-[#C4C4C4] rounded-[100px]'>
-                  <img className='w-[100%] rounded-[100px]' src={ userImg || "/image 1.png"} alt="" />
+                  { userImg &&
+                    <Image 
+                    src={avatar} 
+                    width={100}
+                    height={100}
+                    alt="user avatar"
+                    className='w-[100%] rounded-[100px]' />
+                  }
                 </div>
               </div>
             </div>
 
             <div className='w-full my-[2.5rem] flex flex-wrap gap-y-[2.5rem] items-center justify-between rounded-lg md:min-h-[7.5rem]'>
               <div className='bg-[#DDEFE0] flex flex-col w-[13.81581rem] h-[7.5rem] px-[1.6rem] py-[1.25rem] rounded-[1rem]'>
-                <img className='h-[1.5rem] w-fit self-end' src="/total_revenue_icon.svg" alt="" />
+                <Image
+                  src="/total_revenue_icon.svg"
+                  width={26.4}
+                  height={24}
+                  alt="Total revenue svg"
+                  className='h-[1.5rem] w-fit self-end'
+                />
                 <span className='text-black block text-[0.875rem] mb-[0.3rem]'>Total Revenues</span>
                 <span className='text-black block text-[1.5rem] font-bold '>$2,129,430</span>
               </div>
 
               <div className='bg-[#F4ECDD] flex flex-col w-[13.81581rem] h-[7.5rem] px-[1.6rem] py-[1.25rem] rounded-[1rem]'>
-                <img className='h-[1.5rem] w-fit self-end' src="/total_transactions_icon.svg" alt="" />
+                <Image
+                    src="/total_transactions_icon.svg"
+                    width={20.79}
+                    height={24}
+                    alt="Total revenue svg"
+                    className='h-[1.5rem] w-fit self-end'
+                  />
                 <span className='text-black block text-[0.875rem] mb-[0.3rem]'>Total Transactions</span>
                 <span className='text-black block text-[1.5rem] font-bold '>1,520</span>
               </div>
 
               <div className='bg-[#EFDADA] flex flex-col w-[13.81581rem] h-[7.5rem] px-[1.6rem] py-[1.25rem] rounded-[1rem]'>
-                <img className='h-[1.5rem] w-fit self-end' src="/total_likes_icon.svg"  alt="" />
+                <Image
+                    src="/total_likes_icon.svg"
+                    width={23.3}
+                    height={24}
+                    alt="Total likes svg"
+                    className='h-[1.5rem] w-fit self-end'
+                  />
                 <span className='text-black block text-[0.875rem] mb-[0.3rem]'>Total Likes</span>
                 <span className='text-black block text-[1.5rem] font-bold '>9,721</span>
               </div>
 
               <div className='bg-[#DEE0EF] flex flex-col w-[13.81581rem] h-[7.5rem] px-[1.6rem] py-[1.25rem] rounded-[1rem]'>
-                <img className='h-[1.5rem] w-fit self-end' src="/total_user_icon.svg"  alt="" />
+                <Image
+                    src="/total_user_icon.svg"
+                    width={36.82}
+                    height={24}
+                    alt="Total user svg"
+                    className='h-[1.5rem] w-fit self-end'
+                  />  
                 <span className='text-black block text-[0.875rem] mb-[0.3rem]'>Total Users</span>
                 <span className='text-black block text-[1.5rem] font-bold'>829</span>
               </div>
@@ -122,20 +177,4 @@ const dashboard = () => {
   }
 }
 
-export async function getServerSideProps(context){
-  const session = await getSession(context)
-
-  if(!session){
-    return{
-      redirect: {
-        destination: '/login'
-      },
-    }
-  }
-
-  return {
-    props: { session }
-  }
-}
-
-export default dashboard
+export default Dashboard

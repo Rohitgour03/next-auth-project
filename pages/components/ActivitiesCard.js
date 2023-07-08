@@ -1,7 +1,7 @@
 import React, { useEffect, useState }  from 'react'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
-export const ActivitiesCard = () => {
+const ActivitiesCard = () => {
 
   const [data, setData] = useState([])
   useEffect(() => {
@@ -65,3 +65,5 @@ export const ActivitiesCard = () => {
     </div>
   )
 }
+
+export default ActivitiesCard
