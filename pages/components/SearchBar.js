@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const SearchBar = () => {
+const SearchBar = () => {
   return (
     <div className="relative">
       <input
@@ -18,3 +18,5 @@ export const SearchBar = () => {
 
   )
 }
+
+export default SearchBar
