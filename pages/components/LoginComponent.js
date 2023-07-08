@@ -71,7 +71,7 @@ const LoginComponent = ({credentials, setCredentials, submitHandler, googleSigni
             <label htmlFor="password" className='block mb-[0.6rem]' >Password</label>
             <input 
               id='password' type="text"
-              value={credentials.password} 
+              value={credentials && credentials.password} 
               onChange={(e) => {formHandler(e)}}
               placeholder='Enter Password'
               className='py-[10px] px-4 rounded-[10px] w-full bg-[#F5F5F5]' />
