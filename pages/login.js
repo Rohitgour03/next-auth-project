@@ -3,19 +3,19 @@ import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import LoginComponent from './components/LoginComponent'
 
-export async function getServerSideProps(context){
-  const session = await getSession(context)
-  if(session){
-    return{
-      redirect: {
-        destination: '/dashboard'
-      },
-    }
-  }
-  return {
-    props: { }
-  }
-}
+// export async function getServerSideProps(context){
+//   const session = await getSession(context)
+//   if(session){
+//     return{
+//       redirect: {
+//         destination: '/dashboard'
+//       },
+//     }
+//   }
+//   return {
+//     props: {}
+//   }
+// }
 
 const Login = () => {
   const router = useRouter()
